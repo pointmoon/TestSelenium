@@ -25,26 +25,26 @@ namespace TestSelenium
         {
             Browser = new OpenQA.Selenium.Firefox.FirefoxDriver();
             Browser.Manage().Window.Maximize();
-            Browser.Navigate().GoToUrl("https://accounts.google.com/signup/v2/webcreateaccount?continue=https%3A%2F%2Fwww.google.com%2F&hl=ru&flowName=GlifWebSignIn&flowEntry=SignUp");
+            //Browser.Navigate().GoToUrl("https://accounts.google.com/signup/v2/webcreateaccount?continue=https%3A%2F%2Fwww.google.com%2F&hl=ru&flowName=GlifWebSignIn&flowEntry=SignUp");
 
-            //имя
-            IWebElement firstName = Browser.FindElement(By.Id("firstName"));
-            firstName.SendKeys(RandomString(7));
+            ////имя
+            //IWebElement firstName = Browser.FindElement(By.Id("firstName"));
+            //firstName.SendKeys(RandomString(7));
 
-            //фамилия
-            IWebElement lastName = Browser.FindElement(By.Id("lastName"));
-            lastName.SendKeys(RandomString(7));
+            ////фамилия
+            //IWebElement lastName = Browser.FindElement(By.Id("lastName"));
+            //lastName.SendKeys(RandomString(7));
 
-            //имя пользователя
-            IWebElement username = Browser.FindElement(By.Id("username"));
-            username.SendKeys(RandomString(14));
+            ////имя пользователя
+            //IWebElement username = Browser.FindElement(By.Id("username"));
+            //username.SendKeys(RandomString(14));
 
-            //пароль
-            string pass = RandomString(14);
-            IWebElement passwd = Browser.FindElement(By.Name("Passwd"));
-            passwd.SendKeys(pass);
-            IWebElement ConfirmPasswd = Browser.FindElement(By.Name("ConfirmPasswd"));
-            ConfirmPasswd.SendKeys(pass + OpenQA.Selenium.Keys.Enter);
+            ////пароль
+            //string pass = RandomString(14);
+            //IWebElement passwd = Browser.FindElement(By.Name("Passwd"));
+            //passwd.SendKeys(pass);
+            //IWebElement ConfirmPasswd = Browser.FindElement(By.Name("ConfirmPasswd"));
+            //ConfirmPasswd.SendKeys(pass + OpenQA.Selenium.Keys.Enter);
 
             ////телефон
             //IWebElement phoneNumber = Browser.FindElement(By.Id("gradsIdvPhoneNext"));
