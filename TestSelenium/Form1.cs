@@ -16,9 +16,9 @@ namespace TestSelenium
     public partial class Form1 : Form
     {
         private IWebDriver Browser;
-        private StreamWriter fout = new StreamWriter("instagram.dat");
+        private StreamWriter fout = new StreamWriter("instagram" + DateTime.Now.ToString("HH-mm-ss") + ".dat");
         private Random random_str = new Random(Environment.TickCount);
-        private string UserAgent = "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36";
+        private string UserAgent = "";
 
         public Form1()
         {
@@ -28,7 +28,9 @@ namespace TestSelenium
 
         private void button1_Click(object sender, EventArgs e)
         {
+            UserAgent = UserAgentTextBox.Text;
             button1.Enabled = false;
+            UserAgentTextBox.Enabled = false;
 
             OpenQA.Selenium.Firefox.FirefoxProfile profile = new OpenQA.Selenium.Firefox.FirefoxProfile();
             OpenQA.Selenium.Firefox.FirefoxOptions option = new OpenQA.Selenium.Firefox.FirefoxOptions();
@@ -42,8 +44,8 @@ namespace TestSelenium
 
             //----------------эл.адрес----------------
             IWebElement email = Browser.FindElement(By.Name("emailOrPhone"));
-            string str_email_1 = RandomString(7);
-            string str_email_2 = "@" + "yandex.com";
+            string str_email_1 = RandomString(11, "LetterAndNumber");
+            string str_email_2 = "@" + "yandex.ru";
             string str_email = str_email_1 + str_email_2;
             SendToPage(email, str_email_1);
             SendToPage(email, str_email_2);
@@ -52,9 +54,9 @@ namespace TestSelenium
 
             //----------------имя и фамилия----------------
             IWebElement name = Browser.FindElement(By.Name("fullName"));
-            string str_name_1 = RandomString(7);
+            string str_name_1 = RandomString(7, "Letter");
             string str_name_2 = " ";
-            string str_name_3 = RandomString(8);
+            string str_name_3 = RandomString(8, "Letter");
             string str_name = str_name_1 + str_name_2 + str_name_3;
             SendToPage(name, str_name_1);
             SendToPage(name, str_name_2);
@@ -64,8 +66,8 @@ namespace TestSelenium
 
             //----------------имя пользователя----------------
             IWebElement username = Browser.FindElement(By.Name("username"));
-            string str_username_1 = RandomString(5);
-            string str_username_2 = RandomString(5);
+            string str_username_1 = RandomString(5, "LetterAndNumber");
+            string str_username_2 = RandomString(5, "LetterAndNumber");
             string str_username = str_username_1 + str_username_2;
             SendToPage(username, str_username_1);
             SendToPage(username, str_username_2);
@@ -74,15 +76,15 @@ namespace TestSelenium
 
             //----------------пароль----------------
             IWebElement password = Browser.FindElement(By.Name("password"));
-            string str_password_1 = RandomString(2);
-            string str_password_2 = RandomString(4);
-            string str_password_3 = RandomString(4);
+            string str_password_1 = RandomString(2, "LetterAndNumber");
+            string str_password_2 = RandomString(4, "LetterAndNumber");
+            string str_password_3 = RandomString(4, "LetterAndNumber");
             string str_password = str_password_1 + str_password_2 + str_password_3;
             SendToPage(password, str_password_1);
             SendToPage(password, str_password_2);
             SendToPage(password, str_password_3);
             //антиБОТ
-            System.Threading.Thread.Sleep(5000);
+            System.Threading.Thread.Sleep(10304);
 
             password.SendKeys(OpenQA.Selenium.Keys.Enter);
 
@@ -92,38 +94,13 @@ namespace TestSelenium
             textBox1.AppendText("Имя пользователя: " + str_username + "\n");
             textBox1.AppendText("Пароль: " + str_password + "\n");
             //----------------вывод в файл----------------
-            fout.Write("Эл. адрес: " + str_email + "\n");
-            fout.Write("Имя и Файмилия: " + str_name + "\n");
-            fout.Write("Имя пользователя: " + str_username + "\n");
-            fout.Write("Пароль: " + str_password + "\n");
+            fout.WriteLine("Эл. адрес: " + str_email + "\n");
+            fout.WriteLine("Имя и Файмилия: " + str_name + "\n");
+            fout.WriteLine("Имя пользователя: " + str_username + "\n");
+            fout.WriteLine("Пароль: " + str_password + "\n");
 
 
             button3.Enabled = true;
-            //----------------------------------------------------------------------
-            //Browser.Navigate().GoToUrl("https://accounts.google.com/signup/v2/webcreateaccount?continue=https%3A%2F%2Fwww.google.com%2F&hl=ru&flowName=GlifWebSignIn&flowEntry=SignUp");
-
-            ////имя
-            //IWebElement firstName = Browser.FindElement(By.Id("firstName"));
-            //firstName.SendKeys(RandomString(7));
-
-            ////фамилия
-            //IWebElement lastName = Browser.FindElement(By.Id("lastName"));
-            //lastName.SendKeys(RandomString(7));
-
-            ////имя пользователя
-            //IWebElement username = Browser.FindElement(By.Id("username"));
-            //username.SendKeys(RandomString(14));
-
-            ////пароль
-            //string pass = RandomString(14);
-            //IWebElement passwd = Browser.FindElement(By.Name("Passwd"));
-            //passwd.SendKeys(pass);
-            //IWebElement ConfirmPasswd = Browser.FindElement(By.Name("ConfirmPasswd"));
-            //ConfirmPasswd.SendKeys(pass + OpenQA.Selenium.Keys.Enter);
-
-            ////телефон
-            //IWebElement phoneNumber = Browser.FindElement(By.Id("gradsIdvPhoneNext"));
-            //username.SendKeys(OpenQA.Selenium.Keys.Enter);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -132,9 +109,18 @@ namespace TestSelenium
         }
 
         //функция для генерации рандомного символа
-        public string RandomString(int length)
+        public string RandomString(int length, string dictionary)
         {
-            string chars = "_1234567890abcdefghijklmnopqrstuvwxyz";
+            string chars="";
+            switch (dictionary)
+            {
+                case "Letter":
+                    chars = "abcdefghijklmnopqrstuvwxyz";
+                    break;
+                case "LetterAndNumber":
+                    chars = "_1234567890abcdefghijklmnopqrstuvwxyz";
+                    break;
+            }
             StringBuilder builder = new StringBuilder(length);
             for (int i = 0; i < length; ++i)
             {
@@ -163,6 +149,13 @@ namespace TestSelenium
         private void button3_Click(object sender, EventArgs e)
         {
             Application.Restart();
+        }
+
+        //обработчик кнопки "Пометить как рабочий"
+        private void button4_Click(object sender, EventArgs e)
+        {
+            fout.WriteLine("Рабочий.");
+            textBox1.AppendText("Пометка добавлена!\n");
         }
     }
 }

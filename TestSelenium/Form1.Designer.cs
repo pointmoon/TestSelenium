@@ -32,13 +32,15 @@
             this.button2 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
+            this.UserAgentTextBox = new System.Windows.Forms.TextBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(8, 12);
+            this.button1.Location = new System.Drawing.Point(12, 170);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(197, 23);
+            this.button1.Size = new System.Drawing.Size(203, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "Запуск";
             this.button1.UseVisualStyleBackColor = true;
@@ -46,9 +48,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(8, 191);
+            this.button2.Location = new System.Drawing.Point(12, 199);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(197, 23);
+            this.button2.Size = new System.Drawing.Size(203, 23);
             this.button2.TabIndex = 1;
             this.button2.Text = "Завершение работы";
             this.button2.UseVisualStyleBackColor = true;
@@ -56,36 +58,55 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(8, 41);
+            this.textBox1.Location = new System.Drawing.Point(221, 12);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(197, 115);
+            this.textBox1.Size = new System.Drawing.Size(203, 152);
             this.textBox1.TabIndex = 5;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(8, 162);
+            this.button3.Location = new System.Drawing.Point(221, 170);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(197, 23);
+            this.button3.Size = new System.Drawing.Size(203, 23);
             this.button3.TabIndex = 6;
             this.button3.Text = "Повторить";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // UserAgentTextBox
+            // 
+            this.UserAgentTextBox.Location = new System.Drawing.Point(12, 12);
+            this.UserAgentTextBox.Multiline = true;
+            this.UserAgentTextBox.Name = "UserAgentTextBox";
+            this.UserAgentTextBox.Size = new System.Drawing.Size(203, 152);
+            this.UserAgentTextBox.TabIndex = 7;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.SystemColors.Control;
+            this.button4.Location = new System.Drawing.Point(221, 199);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(203, 23);
+            this.button4.TabIndex = 8;
+            this.button4.Text = "Пометить как рабочий";
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(213, 221);
+            this.ClientSize = new System.Drawing.Size(438, 229);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.UserAgentTextBox);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(229, 343);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(229, 234);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Создаватель аккаунтов";
@@ -101,6 +122,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox UserAgentTextBox;
+        private System.Windows.Forms.Button button4;
     }
 }
 
